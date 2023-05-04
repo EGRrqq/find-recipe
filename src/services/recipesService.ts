@@ -7,10 +7,11 @@ export const recipesApi = createApi({
     reducerPath: 'recipesApi',
     baseQuery: fetchBaseQuery({baseUrl: 'https://api.edamam.com/api/recipes/v2'}),
     endpoints: (build) => ({
-        getRecipes: build.query<IRecipes, _>({
-            query: () => `?type=public&app_id=${import.meta.env.VITE_APP_ID}&app_key=${import.meta.env.VITE_APP_KEY}&dishType=Salad`
+        getRecipes: build.query<IRecipes, string>({
+            query: (searchQuery) => `?type=public&app_id=${import.meta.env.VITE_APP_ID}&app_key=${import.meta.env.VITE_APP_KEY}&dishType=Salad&q=${searchQuery}`
         })
     })
 })
+
 
 export const { useGetRecipesQuery } = recipesApi

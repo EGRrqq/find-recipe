@@ -1,19 +1,19 @@
 import { 
   Box,
-  Container, 
   Stack
 } from '@chakra-ui/react'
-import Data from './components/Data'
+import CardList from './components/SearchDataPage'
 import Header from './components/Header'
+import SearchForm from './components/SearchForm'
 
 function App() {
 
   return (
     <Box>
-      <Header />
-
-      <Stack spacing={8} bg={'yellow.50'} minHeight={'100vh'} >
-        <Data />
+      <Stack spacing={8} minHeight={'100vh'} >
+        <Header />
+        <SearchForm queryParam='recipe' />
+        <CardList />
       </Stack>
     </Box>
   )

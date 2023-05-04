@@ -2,7 +2,7 @@ export interface IRecipes {
     hits: IHit[]
 }
 
-interface IHit {
+export interface IHit {
     recipe: IRecipe
 }
 
