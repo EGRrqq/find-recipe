@@ -2,7 +2,6 @@ import { Formik, Field } from "formik";
 import {
   Button,
   FormControl,
-  FormLabel,
   HStack,
   Input,
 } from "@chakra-ui/react";
@@ -13,13 +12,13 @@ type SearchFormProps = {
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({ queryParam }) => {
-  const { setSearchParams, query } = useSearch(queryParam);
+  const { setSearchParams, searchQuery } = useSearch(queryParam);
 
   return (
     <Formik
       enableReinitialize
       initialValues={{
-        search: query,
+        search: searchQuery,
       }}
       onSubmit={(values) => {
         setSearchParams({ recipe: values.search });

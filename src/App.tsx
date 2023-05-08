@@ -1,21 +1,21 @@
-import { 
-  Box,
-  Stack
-} from '@chakra-ui/react'
-import CardList from './components/SearchDataPage'
-import Header from './components/Header'
-import SearchForm from './components/SearchForm'
+import { Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import SearchDataPage from './components/SearchDataPage'
+import HomePage from './components/HomePage'
+import SingleCardPage from './components/SingleCardPage'
 
 function App() {
 
   return (
-    <Box>
-      <Stack spacing={8} minHeight={'100vh'} >
-        <Header />
-        <SearchForm queryParam='recipe' />
-        <CardList />
-      </Stack>
-    </Box>
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path='/recipes' element={<SearchDataPage />} />
+          <Route path='/recipes/:id' element={<SingleCardPage />} />
+        </Route>
+      </Routes>
+    </>
   )
 }
 

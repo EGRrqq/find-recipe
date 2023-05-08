@@ -1,9 +1,19 @@
 export interface IRecipes {
+    _links: ILinks
     hits: IHit[]
 }
 
 export interface IHit {
-    recipe: IRecipe
+    recipe: IRecipe;
+}
+
+interface ILinks {
+    next: INext;
+}
+
+interface INext {
+    href: string;
+    title: string;
 }
 
 interface IRecipe {
