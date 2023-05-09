@@ -8,10 +8,11 @@ import {
     Stack, 
     Divider, 
     CardFooter, 
-    Heading 
+    Heading,
+    Link
 } from "@chakra-ui/react";
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from "react-router-dom";
+import { Link as routerLink } from "react-router-dom";
 
 type CardItemProps = {
     item: IHit
@@ -32,7 +33,7 @@ const CardItem: React.FC<CardItemProps> = ({ item }) => {
                 <CardBody>
                     <Stack mt='6' spacing='3'>
                         <Image src={item.recipe.image} alt='recipe image' borderRadius='lg' />
-                        <Link to={`/recipes/${item.recipe.uri.split("#")[1]}`}>
+                        <Link as={routerLink} to={`/recipes/${item.recipe.uri.split("#")[1]}`}>
                             <Heading size='md'>{item.recipe.label}</Heading>
                         </Link>
                     </Stack>

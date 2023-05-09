@@ -1,9 +1,23 @@
-import { Box, Container, Flex, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  TabIndicator,
+  TabList,
+  Tabs,
+  useColorMode,
+} from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useState } from "react";
+import { useEffect } from "react";
 
 const Header: React.FC<PropsWithChildren> = ({ children }) => {
   const { colorMode } = useColorMode();
+  const [tabsIndex, setTabsIndex] = useState(0);
+
+  useEffect(() => {
+    window.localStorage.setItem("tabsIndex", String(tabsIndex));
+  }, [tabsIndex]);
 
   return (
     <Box
@@ -13,15 +27,20 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
     >
       <Container maxW="container.xl">
         <Flex justifyContent="space-between" alignItems="center">
-          <Tabs position="relative" variant="unstyled">
+          <Tabs
+            position="relative"
+            variant="unstyled"
+            onChange={(index) => setTabsIndex(index)}
+            defaultIndex={Number(window.localStorage.getItem("tabsIndex"))}
+          >
             <TabList>
-                {React.Children.map(children, child => (
-                    <Tab>
-                        {child}
-                    </Tab>
-                ))}
+              {React.Children.map(children, (child) => (
+                <>
+                  {child}
+                </>
+              ))}
             </TabList>
-            
+
             <TabIndicator
               mt="-1.5px"
               height="2px"
