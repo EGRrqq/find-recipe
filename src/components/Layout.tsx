@@ -1,7 +1,7 @@
-import { Box, Stack, Link, Tab } from "@chakra-ui/react";
+import { Box, Stack, Tab } from "@chakra-ui/react";
 import Header from "./Header";
 
-import { Link as routerLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Footer from "./Footer";
 
 const Layout = () => {
@@ -10,11 +10,11 @@ const Layout = () => {
       <Box>
         <Stack spacing={8} minH="100vh">
           <Header>
-            <Link as={routerLink} to="/">
+            <Link to="/">
               <Tab>Home</Tab>
             </Link>
 
-            <Link as={routerLink} to="/recipes">
+            <Link to="/recipes">
               <Tab>Recipes</Tab>
             </Link>
           </Header>

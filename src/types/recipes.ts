@@ -21,7 +21,9 @@ interface IRecipe {
     url: string;
     label: string;
     image: string;
-    ingredients: IIngredient[]
+    ingredients: IIngredient[];
+    calories: number;
+    totalWeight: number;
 }
 
 interface IIngredient {

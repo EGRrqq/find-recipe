@@ -34,6 +34,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ queryParam }) => {
                 name="search"
                 type="search"
                 variant="filled"
+                noOfLines={1}
               />
             </FormControl>
             <Button type="submit" colorScheme="purple">

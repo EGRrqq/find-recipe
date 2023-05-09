@@ -30,7 +30,6 @@ const CardList: React.FC<CardListProps> = ({ queryParam }) => {
   // const { data: newPageList } = useGetNewPageRecipesQuery(newPageUrl);
   // const newPageUrl2 = newPageList?._links.next.href.split("?")[1];
   //mb recursion
-
   return (
     <>
       {isLoading && (
@@ -54,7 +53,7 @@ const CardList: React.FC<CardListProps> = ({ queryParam }) => {
         </Center>
       )}
 
-      <SimpleGrid columns={[1, 2, 3, 5]} spacing={8} px="16">
+      <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={8} px="16">
         {list?.hits.map((item) => (
           <CardItem item={item} key={item.recipe.uri.split("#")[1]} />
         ))}
