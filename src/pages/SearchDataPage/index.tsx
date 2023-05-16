@@ -1,5 +1,5 @@
 import CardList from "./CardList";
-import SearchForm from "../SearchForm";
+import SearchForm from "../../components/SearchForm";
 
 const SearchDataPage = () => {
   return (

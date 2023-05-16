@@ -12,7 +12,7 @@ import { useFetching } from "../../hooks/useInfiniteScroll";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { fetchRecipes } from "../../store/features/recipeSlice";
 import { useEffect } from "react";
-import Fallback from "../Fallback";
+import Fallback from "../../components/Fallback";
 
 type CardListProps = {
   queryParam: string;

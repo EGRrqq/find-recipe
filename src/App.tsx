@@ -3,9 +3,9 @@ import { Route, Routes } from "react-router-dom";
 
 import Layout from "./components/Layout";
 
-const HomePage = lazy(() => import("./components/HomePage"));
-const SearchDataPage = lazy(() => import("./components/SearchDataPage"));
-const SingleCardPage = lazy(() => import("./components/SingleCardPage"));
+const HomePage = lazy(() => import("./pages/HomePage/"));
+const SearchDataPage = lazy(() => import("./pages/SearchDataPage"));
+const SingleCardPage = lazy(() => import("./pages/SingleCardPage"));
 
 function App() {
   return (

@@ -17,7 +17,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useGetSingleRecipeQuery } from "../../store/features/recipesService";
 import { AnimatePresence, motion } from "framer-motion";
-import Fallback from "../Fallback";
+import Fallback from "../../components/Fallback";
 
 const SingleCardPage: React.FC = () => {
   const { id } = useParams();
