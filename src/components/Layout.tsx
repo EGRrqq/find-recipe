@@ -1,8 +1,11 @@
-import { Box, Stack, Tab } from "@chakra-ui/react";
-import Header from "./Header";
-
 import { Link, Outlet } from "react-router-dom";
+
+import { Box, Stack, Tab } from "@chakra-ui/react";
+
+import Header from "./Header";
 import Footer from "./Footer";
+import { Suspense } from "react";
+import Fallback from "./Fallback";
 
 const Layout = () => {
   return (
@@ -19,7 +22,9 @@ const Layout = () => {
             </Link>
           </Header>
 
-          <Outlet />
+          <Suspense fallback={<Fallback />}>
+            <Outlet />
+          </Suspense>
 
           <Footer />
         </Stack>

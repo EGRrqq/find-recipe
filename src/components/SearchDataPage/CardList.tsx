@@ -3,7 +3,6 @@ import {
   AlertIcon,
   Center,
   SimpleGrid,
-  Spinner,
 } from "@chakra-ui/react";
 
 import CardItem from "./CardItem";
@@ -13,6 +12,7 @@ import { useFetching } from "../../hooks/useInfiniteScroll";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { fetchRecipes } from "../../store/features/recipeSlice";
 import { useEffect } from "react";
+import Fallback from "../Fallback";
 
 type CardListProps = {
   queryParam: string;
@@ -33,15 +33,7 @@ const CardList: React.FC<CardListProps> = ({ queryParam }) => {
   return (
     <>
       {loading && (
-        <Center>
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        </Center>
+        <Fallback />
       )}
 
       {error && (

@@ -8,7 +8,6 @@ import {
   Center,
   Heading,
   Image,
-  Spinner,
   Stack,
   Text,
   VStack,
@@ -18,6 +17,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useGetSingleRecipeQuery } from "../../store/features/recipesService";
 import { AnimatePresence, motion } from "framer-motion";
+import Fallback from "../Fallback";
 
 const SingleCardPage: React.FC = () => {
   const { id } = useParams();
@@ -52,15 +52,7 @@ const SingleCardPage: React.FC = () => {
             variant="outline"
           >
             {isLoading ? (
-              <Center>
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  size="xl"
-                />
-              </Center>
+              <Fallback />
             ) : (
               <Image
                 objectFit="cover"
@@ -76,7 +68,13 @@ const SingleCardPage: React.FC = () => {
 
                 <Text py="2">
                   See full recipe on:{" "}
-                  <Link href={card?.recipe.url} color={colorMode === 'light' ? 'green.500' : 'teal.200'} isExternal>{card?.recipe.source} </Link>
+                  <Link
+                    href={card?.recipe.url}
+                    color={colorMode === "light" ? "green.500" : "teal.200"}
+                    isExternal
+                  >
+                    {card?.recipe.source}{" "}
+                  </Link>
                 </Text>
               </CardBody>
 
