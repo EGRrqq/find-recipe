@@ -1,4 +1,7 @@
 export interface IRecipes {
+    from: number
+    to: number
+    count: number
     _links: ILinks
     hits: IHit[]
 }
@@ -24,6 +27,7 @@ interface IRecipe {
     ingredients: IIngredient[];
     calories: number;
     totalWeight: number;
+    source: string;
 }
 
 interface IIngredient {

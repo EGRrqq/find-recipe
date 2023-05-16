@@ -22,8 +22,6 @@ type CardItemProps = {
 const CardItem: React.FC<CardItemProps> = ({ item }) => {
   const { colorMode } = useColorMode();
 
-  const domain = new URL(item.recipe.url);
-
   return (
     <AnimatePresence>
       <Card
@@ -81,8 +79,8 @@ const CardItem: React.FC<CardItemProps> = ({ item }) => {
         <Divider borderColor={colorMode === "light" ? "gray.700" : "gray.50"} />
 
         <CardFooter justify="space-evenly">
-          <Link href={item.recipe.url} target="_blank">
-            {domain.hostname.replace("www.", "")}
+          <Link href={item.recipe.url} isExternal>
+            {item.recipe.source}
           </Link>
         </CardFooter>
       </Card>

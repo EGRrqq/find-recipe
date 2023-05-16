@@ -6,12 +6,13 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 
-import {
-  // useGetNewPageRecipesQuery,
-  useGetRecipesQuery,
-} from "../../services/recipesService";
 import CardItem from "./CardItem";
 import { useSearch } from "../../hooks/useSearch";
+
+import { useFetching } from "../../hooks/useInfiniteScroll";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { fetchRecipes } from "../../store/features/recipeSlice";
+import { useEffect } from "react";
 
 type CardListProps = {
   queryParam: string;
@@ -19,20 +20,19 @@ type CardListProps = {
 
 const CardList: React.FC<CardListProps> = ({ queryParam }) => {
   const { searchQuery } = useSearch(queryParam);
-  const {
-    data: list,
-    isLoading,
-    error: listError,
-    isError,
-  } = useGetRecipesQuery(searchQuery);
 
-  // const newPageUrl = list?._links.next.href.split("?")[1];
-  // const { data: newPageList } = useGetNewPageRecipesQuery(newPageUrl);
-  // const newPageUrl2 = newPageList?._links.next.href.split("?")[1];
-  //mb recursion
+  const {recipes, error, loading} = useAppSelector((state) => state.recipes);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecipes(`&q=${searchQuery}`));
+  }, [dispatch, searchQuery]);
+
+  const { ref } = useFetching(recipes, loading);
+
   return (
     <>
-      {isLoading && (
+      {loading && (
         <Center>
           <Spinner
             thickness="4px"
@@ -44,20 +44,26 @@ const CardList: React.FC<CardListProps> = ({ queryParam }) => {
         </Center>
       )}
 
-      {isError && (
+      {error && (
         <Center>
           <Alert status="error">
             <AlertIcon />
-            {listError.error}
+            {error}
           </Alert>
         </Center>
       )}
 
       <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={8} px="16">
-        {list?.hits.map((item) => (
-          <CardItem item={item} key={item.recipe.uri.split("#")[1]} />
-        ))}
+        {recipes?.map((item) =>
+          item.hits.map((hits) => (
+            <CardItem item={hits} key={hits.recipe.uri.split("#")[1]} />
+          ))
+        )}
       </SimpleGrid>
+
+      {!loading && !searchQuery && recipes.length && (
+        <div ref={ref} style={{ height: 20, background: "red" }}></div>
+      )}
     </>
   );
 };
