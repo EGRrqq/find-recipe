@@ -23,8 +23,10 @@ import {
 import Link from "next/link";
 
 const Header = () => {
-  // logo
-  // input
+  // use the match media api to merge headers together when the screen is large
+
+  // upper header (logo, user profile button)
+  // bottom header (input with filter)
 
   return (
     <VStack
