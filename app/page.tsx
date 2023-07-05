@@ -1,10 +1,11 @@
+'use client'
 
 export default function SearchDetails() {
-  // recipe cards simple grid
-  
+  // simple grid with recipe cards
+
   return (
     <main>
-      w
+      <h1>wwww</h1>
     </main>
   );
 }

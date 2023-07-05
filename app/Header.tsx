@@ -19,8 +19,12 @@ import {
   InputLeftElement,
   InputRightElement,
   Heading,
+  Stack,
+  HStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
+
+import useMatchMedia from "@buildinams/use-match-media";
 
 const Header = () => {
   // use the match media api to merge headers together when the screen is large
@@ -28,63 +32,50 @@ const Header = () => {
   // upper header (logo, user profile button)
   // bottom header (input with filter)
 
+  // const isMobile = useMatchMedia("(max-width: 768px)", true);
+
   return (
-    <VStack
-      as="header"
-      bg="green.300"
-      divider={<StackDivider borderColor="gray.700" />}
-      spacing={4}
-      paddingY={4}
-    >
-      <Container>
-        <Flex>
-          <List as="nav">
-            <ListItem>
-              <ChakraLink as={Link} href="/">
-                <IconButton
-                  aria-label="return to Homepage"
-                  boxShadow="inner_BR"
-                  backgroundColor="yellow.400"
-                  color="red.800"
-                  icon={<BiFoodMenu />}
+    <Container minW="full" as="header" bg="green.300" paddingY={48}>
+      <VisuallyHidden>
+        <Heading as="h1" size="xs">
+          Find Recipe
+        </Heading>
+      </VisuallyHidden>
 
-                  variant='solid'
-                />
-              </ChakraLink>
-            </ListItem>
-          </List>
-
-          {/* <Spacer /> */}
-        </Flex>
-      </Container>
-
-      <Container>
-        <Flex>
-          <VisuallyHidden>
-            <Heading as="h1" size="xs" paddingX={2.5}>
-              Find Recipe
-            </Heading>
-          </VisuallyHidden>
-
-          <InputGroup variant="filled" >
-            <InputLeftElement>
-              <SearchIcon color="gray.700" />
-            </InputLeftElement>
-
-            <Input placeholder="find recipe" border={0} boxShadow="inner_BR" />
-
-            <InputRightElement borderLeft="1px solid #718096">
+      <HStack spacing={4} justifyContent='center'>
+        {/* <List as="nav">
+          <ListItem>
+            <ChakraLink as={Link} href="/">
               <IconButton
-                color="gray.700"
-                aria-label="search button"
-                icon={<BiFilterAlt />}
-                variant="ghost"
+                aria-label="return to Homepage"
+                boxShadow="inner_BR"
+                backgroundColor="yellow.400"
+                color="red.800"
+                icon={<BiFoodMenu />}
+                variant="solid"
               />
-            </InputRightElement>
-          </InputGroup>
-        </Flex>
-      </Container>
-    </VStack>
+            </ChakraLink>
+          </ListItem>
+        </List> */}
+
+        <InputGroup variant="filled" width='container.sm'>
+          <InputLeftElement>
+            <SearchIcon color="gray.700" />
+          </InputLeftElement>
+
+          <Input placeholder="find recipe" border={0} boxShadow="inner_BR" />
+
+          <InputRightElement borderLeft="1px solid #718096">
+            <IconButton
+              color="gray.700"
+              aria-label="search button"
+              icon={<BiFilterAlt />}
+              variant="ghost"
+            />
+          </InputRightElement>
+        </InputGroup>
+      </HStack>
+    </Container>
   );
 };
 

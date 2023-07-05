@@ -1,4 +1,4 @@
-import { IRecipeSearch } from './recipe'
+import { IRecipeSearch } from './recipeSearchAPI'
 
 // user type
 // recipe creation type
