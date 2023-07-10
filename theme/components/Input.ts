@@ -31,8 +31,29 @@ const variantFilled = definePartsStyle((props) => {
     }
 })
 
+const variantOutline = definePartsStyle((props) => {
+    return {
+        field: {
+
+            _hover: {
+                borderColor: "gray.700",
+                boxShadow: "inset -1px -1px #718096",
+            },
+
+            _focusVisible: {
+                borderColor: `green.300`,
+            },
+
+            _pressed: {
+                bg: 'red.800'
+            }
+        }
+    }
+})
+
 const variants = {
     filled: variantFilled,
+    outline: variantOutline,
 }
 
 export const inputTheme = defineMultiStyleConfig({
