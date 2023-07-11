@@ -18,7 +18,6 @@ import { useState } from "react";
 import TestSlider from "./TestSlider";
 import ImageSlider from "./ImageSlider";
 import AnotherSlider from "./AnotherSlider";
-import { App } from "./Sadge";
 import BasedgeSlider from "./BasedgeSlider";
 
 
@@ -81,7 +80,6 @@ export default function SearchDetails() {
 
       <BasedgeSlider />
 
-      <App />
     </Container>
   );
 }
