@@ -1,7 +1,7 @@
 "use client";
 
 import Slider, { Settings } from "react-slick";
-import { ImageData } from "./ImageData";
+import { imageData } from "./ImageData";
 import {
   Box,
   Container,
@@ -82,11 +82,15 @@ const setting: Settings = {
 
 const ImageSlider = () => {
   return (
-    <Stack marginY={8} bg="red.400" overflow="hidden">
+    <Stack as="article" marginY={8} bg="red.400" overflow="hidden">
       <Slider {...setting}>
-        {ImageData.map((data) => (
+        {imageData.map((data) => (
           <Box key={data.image} as="section" overflow="hidden">
-            <Img src={data.image} alt={data.label} boxSize={["200px", "200px","300px"]} />
+            <Img
+              src={data.image}
+              alt={data.label}
+              boxSize={["200px", "200px", "300px"]}
+            />
           </Box>
         ))}
 
@@ -98,6 +102,7 @@ const ImageSlider = () => {
         </Wrap>
       ))} */}
       </Slider>
+
     </Stack>
   );
 };
