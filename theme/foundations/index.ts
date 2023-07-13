@@ -1,5 +1,1 @@
-import shadows from "./shadows";
-
-export {
-    shadows
-}
+export { default as shadows } from "./shadows"

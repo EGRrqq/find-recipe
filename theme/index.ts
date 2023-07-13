@@ -11,6 +11,7 @@ import { buttonTheme, inputTheme } from './components'
 
 const overrides = {
   shadows,
+  // styles,
   // Other foundational style overrides go here
   components: {
     Button: buttonTheme,

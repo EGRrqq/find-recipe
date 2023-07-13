@@ -30,6 +30,7 @@ import Link from "next/link";
 import { useRef } from "react";
 
 import useMatchMedia from "@buildinams/use-match-media";
+import ImageSlider from "./ImageSlider";
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -116,17 +117,15 @@ const Header = () => {
               <Divider colorScheme="gray" borderColor="gray.700" />
 
               <ModalBody>
-                <InputGroup
-                  variant="outline"
-                  size="lg"
-                  key={() => console.log("yooo")}
-                >
+                <InputGroup variant="outline" size="lg">
                   <InputLeftElement>
                     <SearchIcon color="gray.700" />
                   </InputLeftElement>
 
                   <Input placeholder="find recipe" ref={initialRef} />
                 </InputGroup>
+
+                <ImageSlider />
               </ModalBody>
 
               <Divider colorScheme="gray" borderColor="gray.700" />

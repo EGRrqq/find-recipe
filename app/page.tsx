@@ -1,25 +1,7 @@
 "use client";
 
-import {
-  VisuallyHidden,
-  Container,
-  Heading,
-  Box,
-  BoxProps,
-  Center,
-  Stack,
-  HStack,
-  Flex,
-  Image,
-  Input,
-} from "@chakra-ui/react";
-import { AnimatePresence, Variants, motion, wrap } from "framer-motion";
-import { useState } from "react";
-import TestSlider from "./TestSlider";
+import { VisuallyHidden, Container, Heading } from "@chakra-ui/react";
 import ImageSlider from "./ImageSlider";
-import AnotherSlider from "./AnotherSlider";
-import BasedgeSlider from "./BasedgeSlider";
-
 
 export default function SearchDetails() {
   // blocks with recipes filtered by category
@@ -65,21 +47,14 @@ export default function SearchDetails() {
   //  ______________________________________________________________
 
   return (
-    <Container as="main" minW="full" p={4} bg="gray.800">
+    <Container as="main" minW="full" p={4} bg="red.50">
       <VisuallyHidden>
         <Heading as="h2" size="lg">
           View Recipes
         </Heading>
       </VisuallyHidden>
 
-      <TestSlider />
-
       <ImageSlider />
-
-      <AnotherSlider />
-
-      <BasedgeSlider />
-
     </Container>
   );
 }
