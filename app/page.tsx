@@ -12,13 +12,14 @@ import {
   AlertTitle,
   AlertDescription,
   Divider,
+  Button,
 } from "@chakra-ui/react";
 
 import ImageSlider from "./ImageSlider";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { useRecipe } from "@/store";
 import { shallow } from "zustand/shallow";
+import { useStore } from "@/hooks";
 
 export default function HomePage() {
   // blocks with recipes filtered by category
@@ -63,22 +64,12 @@ export default function HomePage() {
 
   //  ______________________________________________________________
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const bear = useStore(useRecipe, (state) => state);
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    defaultValues: {
-      searchRecipe: searchQuery,
-    },
-  });
-
-  const [recipes, loading] = useRecipe(
-    (state) => [state.recipes, state.loading],
-    shallow
-  );
+  // const [recipes, loading] = useRecipe(
+  //   (state) => [state.recipes, state.loading],
+  //   shallow
+  // );
 
   return (
     <Container as="main" minW="full" p={4} bg="red.50">
@@ -102,7 +93,7 @@ export default function HomePage() {
           </>
         )} */}
 
-      {loading && (
+      {bear?.loading && (
         <>
           <Alert status="loading">
             <AlertIcon />
@@ -114,9 +105,9 @@ export default function HomePage() {
         </>
       )}
 
-      {recipes && (
+      {bear?.recipes && (
         <Wrap>
-          {recipes?.hits.map((el) => (
+          {bear?.recipes.hits.map((el) => (
             <WrapItem key={el._links.self.href}>
               <Heading as="h3" size="md">
                 {el.recipe.label}
