@@ -1,7 +1,8 @@
 "use client";
 
-import { SearchIcon } from "@chakra-ui/icons";
-import { BiFilterAlt, BiFoodMenu } from "../ui/CustomIcons";
+import useMatchMedia from "@buildinams/use-match-media";
+
+import ImageSlider from "./ImageSlider";
 
 import {
   IconButton,
@@ -25,24 +26,39 @@ import {
   Button,
   Divider,
   Box,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import { useRef } from "react";
+import { SearchIcon } from "@chakra-ui/icons";
+import { BiFilterAlt, BiFoodMenu } from "../ui/CustomIcons";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { useRecipe } from "@/store";
+import SearchForm from "./SearchForm";
 
-import useMatchMedia from "@buildinams/use-match-media";
-import ImageSlider from "./ImageSlider";
-
-const Header = () => {
+const HeaderSecond = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const initialRef = useRef(null);
-
-  // use the match media api to merge headers together when the screen is large
-
-  // upper header (logo, user profile button)
-  // bottom header (input with filter)
-
   const isMobile = useMatchMedia("(max-width: 768px)", true);
+  const router = useRouter();
+
+  const getRecipesBySearch = useRecipe((state) => state.getRecipesBySearch);
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      searchRecipe: "",
+    },
+  });
+
+  const handleSearch = () => {
+    handleSubmit((data) => getRecipesBySearch(data.searchRecipe))();
+    onClose();
+  };
 
   return (
     <Container
@@ -57,46 +73,42 @@ const Header = () => {
         </Heading>
       </VisuallyHidden>
 
-      <HStack spacing={4} justifyContent="center">
-        {/* <List as="nav">
-          <ListItem>
-            <ChakraLink as={Link} href="/">
-              <IconButton
-                aria-label="return to Homepage"
-                boxShadow="inner_BR"
-                backgroundColor="yellow.400"
-                color="gray.700"
-                icon={<BiFoodMenu />}
-                variant="solid"
+      <HStack as="nav" spacing={4} justifyContent="center">
+        {/* <SearchForm inputVariant="filled" onOpen={onOpen} formWidth="container.lg" /> */}
+        <Box
+          as="form"
+          width="container.lg"
+          onSubmit={handleSubmit((data) =>
+            getRecipesBySearch(data.searchRecipe)
+          )}
+        >
+          <FormControl isInvalid={errors.searchRecipe}>
+            <FormLabel htmlFor="searchRecipe">Find Recipe</FormLabel>
+
+            <InputGroup variant="filled" onClick={onOpen} size="lg">
+              <InputLeftElement>
+                <SearchIcon color="gray.700" />
+              </InputLeftElement>
+
+              <Input
+                id="searchRecipe"
+                type="search"
+                placeholder="find recipe"
+                {...register("searchRecipe", {
+                  // required: "This is required",
+                })}
               />
-            </ChakraLink>
-          </ListItem>
-        </List> */}
+            </InputGroup>
 
-        <InputGroup variant="filled" width="container.sm" onClick={onOpen}>
-          <InputLeftElement>
-            <SearchIcon color="gray.700" />
-          </InputLeftElement>
+            <FormErrorMessage>
+              {errors.searchRecipe && errors.searchRecipe.message}
+            </FormErrorMessage>
+          </FormControl>
+        </Box>
 
-          <Input placeholder="find recipe" border={0} boxShadow="inner_BR" />
-
-          <InputRightElement borderLeft="1px solid #718096">
-            <IconButton
-              color="gray.700"
-              aria-label="search button"
-              icon={<BiFilterAlt />}
-              variant="ghost"
-            />
-          </InputRightElement>
-        </InputGroup>
 
         {isMobile && (
-          <Modal
-            isOpen={isOpen}
-            onClose={onClose}
-            initialFocusRef={initialRef}
-            isCentered
-          >
+          <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
 
             <ModalContent background="red.50">
@@ -117,13 +129,38 @@ const Header = () => {
               <Divider colorScheme="gray" borderColor="gray.700" />
 
               <ModalBody>
-                <InputGroup variant="outline" size="lg">
-                  <InputLeftElement>
-                    <SearchIcon color="gray.700" />
-                  </InputLeftElement>
+                {/* <SearchForm inputVariant="outline"  /> */}
 
-                  <Input placeholder="find recipe" ref={initialRef} />
-                </InputGroup>
+                <Box
+                  as="form"
+                  onSubmit={handleSubmit((data) =>
+                    getRecipesBySearch(data.searchRecipe)
+                  )}
+                >
+                  <FormControl isInvalid={errors.searchRecipe}>
+                    <FormLabel htmlFor="searchRecipe">Find Recipe</FormLabel>
+
+                    <InputGroup variant="outline" onClick={onOpen} size="lg">
+                      <InputLeftElement>
+                        <SearchIcon color="gray.700" />
+                      </InputLeftElement>
+
+                      <Input
+                        id="searchRecipe"
+                        type="search"
+                        autoFocus
+                        placeholder="find recipe"
+                        {...register("searchRecipe", {
+                          // required: "This is required",
+                        })}
+                      />
+                    </InputGroup>
+
+                    <FormErrorMessage>
+                      {errors.searchRecipe && errors.searchRecipe.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                </Box>
 
                 <ImageSlider />
               </ModalBody>
@@ -138,6 +175,7 @@ const Header = () => {
                   backgroundColor="yellow.400"
                   color="gray.700"
                   variant="solid"
+                  onClick={handleSearch}
                 >
                   Search
                 </Button>
@@ -150,4 +188,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderSecond;

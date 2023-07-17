@@ -1,11 +1,12 @@
-export interface IRecipeSearch extends ILinks {
+export interface IRecipeSearch {
     from: number,
     to: number,
     count: number,
-    hits: IRecipe[]
+    _links: { next?: ILinks }
+    hits: IRecipe[],
 }
 
-interface IRecipe extends ILinks {
+interface IRecipe {
     recipe: {
         uri: string,
         label: string,
@@ -73,19 +74,11 @@ interface IRecipe extends ILinks {
             unit: string,
             sub: {}
         }[],
-
     },
+    _links: { self: ILinks }
 }
 
 interface ILinks {
-    _links: {
-        self?: {
-            href: string,
-            title: string,
-        },
-        next?: {
-            href: string,
-            title: string,
-        }
-    },
+    href: string,
+    title: string,
 }

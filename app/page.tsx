@@ -1,9 +1,26 @@
 "use client";
 
-import { VisuallyHidden, Container, Heading } from "@chakra-ui/react";
-import ImageSlider from "./ImageSlider";
+import {
+  VisuallyHidden,
+  Container,
+  Heading,
+  Input,
+  Wrap,
+  WrapItem,
+  AlertIcon,
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  Divider,
+} from "@chakra-ui/react";
 
-export default function SearchDetails() {
+import ImageSlider from "./ImageSlider";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useRecipe } from "@/store";
+import { shallow } from "zustand/shallow";
+
+export default function HomePage() {
   // blocks with recipes filtered by category
   // _____
   // each block has
@@ -46,15 +63,70 @@ export default function SearchDetails() {
 
   //  ______________________________________________________________
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      searchRecipe: searchQuery,
+    },
+  });
+
+  const [recipes, loading] = useRecipe(
+    (state) => [state.recipes, state.loading],
+    shallow
+  );
+
   return (
     <Container as="main" minW="full" p={4} bg="red.50">
-      <VisuallyHidden>
-        <Heading as="h2" size="lg">
-          View Recipes
-        </Heading>
-      </VisuallyHidden>
+      {/* <VisuallyHidden> */}
+      <Heading as="h2" size="lg">
+        View Recipes
+      </Heading>
+      {/* </VisuallyHidden> */}
 
-      <ImageSlider />
+      <Divider colorScheme="gray" borderColor="gray.700" />
+
+      {/* {error && (
+          <>
+            <Alert status="error">
+              <AlertIcon />
+              <AlertTitle>AAAAAAAAAAAAAA</AlertTitle>
+              <AlertDescription>
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+              </AlertDescription>
+            </Alert>
+          </>
+        )} */}
+
+      {loading && (
+        <>
+          <Alert status="loading">
+            <AlertIcon />
+            <AlertTitle>AAAAAAAAAAAAAA</AlertTitle>
+            <AlertDescription>
+              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            </AlertDescription>
+          </Alert>
+        </>
+      )}
+
+      {recipes && (
+        <Wrap>
+          {recipes?.hits.map((el) => (
+            <WrapItem key={el._links.self.href}>
+              <Heading as="h3" size="md">
+                {el.recipe.label}
+              </Heading>
+            </WrapItem>
+          ))}
+        </Wrap>
+      )}
+
+      {/* <ImageSlider />  */}
     </Container>
   );
 }

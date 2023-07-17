@@ -13,20 +13,27 @@ const variantFilled = definePartsStyle((props) => {
         field: {
             rounded: '0.5rem',
             color: 'gray.700',
+            border: '0',
+            boxShadow: "inner_BR",
 
             _hover: {
                 bg: 'currentBgColor',
                 boxShadow: "inset -2px -4px #718096"
             },
 
+            _focus: {
+                boxShadow: "inset -2px -4px #718096"
+            },
+
             _active: {
                 bg: 'currentBgColor',
-                boxShadow: "inset -1px -1px #718096"
+                // boxShadow: "inset -1px -1px #718096"
             },
 
             _focusVisible: {
                 bg: `gray.100`,
-            }
+            },
+
         },
     }
 })
@@ -44,9 +51,9 @@ const variantOutline = definePartsStyle((props) => {
                 borderColor: `green.300`,
             },
 
-            _pressed: {
-                bg: 'red.800'
-            }
+            // _pressed: {
+            //     bg: 'red.800'
+            // }
         }
     }
 })
