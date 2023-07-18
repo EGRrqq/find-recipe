@@ -29,7 +29,7 @@ const RecipeCard = ({
   recipeUrlName,
 }: IRecipeCard) => {
   return (
-    <Card maxW="sm" bg="yellow.400" boxShadow="inner_BR" color="gray.700">
+    <Card maxW="sm" w="full" h="full" bg="yellow.400" boxShadow="inner_BR" color="gray.700">
       <CardHeader minW="300px">
         <Center>
           <Image
