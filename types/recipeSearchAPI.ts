@@ -1,84 +1,91 @@
-export interface IRecipeSearch {
-    from: number,
-    to: number,
-    count: number,
-    _links: { next?: ILinks }
-    hits: IRecipe[],
-}
+import { z } from "zod"
 
-interface IRecipe {
-    recipe: {
-        uri: string,
-        label: string,
-        image: string,
-        images: {
-            THUMBNAIL: {
-                url: string,
-                width: number,
-                height: number
-            },
-            SMALL: {
-                url: string,
-                width: number,
-                height: number
-            },
-            REGULAR: {
-                url: string,
-                width: number,
-                height: number
-            },
-            LARGE: {
-                url: string,
-                width: number,
-                height: number
-            }
-        },
-        source: string,
-        url: string,
-        shareAs: string,
-        yield: number,
-        dietLabels: string[],
-        healthLabels: string[],
-        cautions: string[],
-        ingredientLines: string[],
-        ingredients:
-        {
-            text: string,
-            quantity: number,
-            measure: string,
-            food: string,
-            weight: number,
-            foodId: string
-        }[],
-        calories: number,
-        glycemicIndex: number,
-        totalCO2Emissions: number,
-        co2EmissionsClass: string,
-        totalWeight: number,
-        cuisineType: string[],
-        mealType: string[],
-        dishType: string[],
-        instructions: string[],
-        tags: string[],
-        externalId: string,
-        totalNutrients: {},
-        totalDaily: {},
-        digest:
-        {
-            label: string,
-            tag: string,
-            schemaOrgTag: string,
-            total: number,
-            hasRDI: true,
-            daily: number,
-            unit: string,
-            sub: {}
-        }[],
-    },
-    _links: { self: ILinks }
-}
+export type IRecipeSearch = z.infer<typeof RecipeSearchSchema>
 
-interface ILinks {
-    href: string,
-    title: string,
-}
+const linksSchema = z.object({
+    href: z.string(),
+    title: z.string(),
+})
+
+const recipeSchema = z.object({
+    recipe: z.object({
+        uri: z.string(),
+        label: z.string(),
+        image: z.string(),
+        images: z.object({
+            THUMBNAIL: z.object({
+                url: z.string(),
+                width: z.number(),
+                height: z.number()
+            }),
+            SMALL: z.object({
+                url: z.string(),
+                width: z.number(),
+                height: z.number()
+            }),
+            REGULAR: z.object({
+                url: z.string(),
+                width: z.number(),
+                height: z.number()
+            }),
+            LARGE: z.object({
+                url: z.string(),
+                width: z.number(),
+                height: z.number()
+            }),
+        }),
+        source: z.string(),
+        url: z.string(),
+        shareAs: z.string(),
+        yield: z.number(),
+        dietLabels: z.array(z.string()),
+        healthLabels: z.array(z.string()),
+        cautions: z.array(z.string()),
+        ingredientLines: z.array(z.string()),
+        ingredients: z.array(z.object({
+            text: z.string(),
+            quantity: z.number(),
+            measure: z.string(),
+            food: z.string(),
+            weight: z.number(),
+            foodId: z.string(),
+        })),
+        calories: z.number(),
+        glycemicIndex: z.number(),
+        totalCO2Emissions: z.number(),
+        co2EmissionsClass: z.string(),
+        totalWeight: z.number(),
+        cuisineType: z.array(z.string()),
+        mealType: z.array(z.string()),
+        dishType: z.array(z.string()),
+        instructions: z.array(z.string()),
+        tags: z.array(z.string()),
+        externalId: z.string(),
+        totalNutrients: z.object({}),
+        totalDaily: z.object({}),
+        digest: z.array(z.object({
+            label: z.string(),
+            tag: z.string(),
+            schemaOrgTag: z.string(),
+            total: z.number(),
+            hasRDI: z.boolean(),
+            daily: z.number(),
+            unit: z.string(),
+            sub: z.object({}),
+        }))
+    }),
+
+    _links: z.object({
+        self: linksSchema
+    })
+})
+
+export const RecipeSearchSchema = z.object({
+    from: z.number(),
+    to: z.number(),
+    count: z.number(),
+    _links: z.object({
+        next: linksSchema.optional()
+    }),
+    hits: z.array(recipeSchema),
+})
