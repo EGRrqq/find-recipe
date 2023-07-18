@@ -4,22 +4,11 @@ import {
   VisuallyHidden,
   Container,
   Heading,
-  Input,
-  Wrap,
-  WrapItem,
-  AlertIcon,
-  Alert,
-  AlertTitle,
-  AlertDescription,
   Divider,
-  Button,
 } from "@chakra-ui/react";
 
 import ImageSlider from "./ImageSlider";
-import { useForm } from "react-hook-form";
-import { useRecipe } from "@/store";
-import { shallow } from "zustand/shallow";
-import { useStore } from "@/hooks";
+
 
 export default function HomePage() {
   // blocks with recipes filtered by category
@@ -64,13 +53,6 @@ export default function HomePage() {
 
   //  ______________________________________________________________
 
-  const bear = useStore(useRecipe, (state) => state);
-
-  // const [recipes, loading] = useRecipe(
-  //   (state) => [state.recipes, state.loading],
-  //   shallow
-  // );
-
   return (
     <Container as="main" minW="full" p={4} bg="red.50">
       {/* <VisuallyHidden> */}
@@ -81,43 +63,9 @@ export default function HomePage() {
 
       <Divider colorScheme="gray" borderColor="gray.700" />
 
-      {/* {error && (
-          <>
-            <Alert status="error">
-              <AlertIcon />
-              <AlertTitle>AAAAAAAAAAAAAA</AlertTitle>
-              <AlertDescription>
-                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-              </AlertDescription>
-            </Alert>
-          </>
-        )} */}
-
-      {bear?.loading && (
-        <>
-          <Alert status="loading">
-            <AlertIcon />
-            <AlertTitle>AAAAAAAAAAAAAA</AlertTitle>
-            <AlertDescription>
-              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            </AlertDescription>
-          </Alert>
-        </>
-      )}
-
-      {bear?.recipes && (
-        <Wrap>
-          {bear?.recipes.hits.map((el) => (
-            <WrapItem key={el._links.self.href}>
-              <Heading as="h3" size="md">
-                {el.recipe.label}
-              </Heading>
-            </WrapItem>
-          ))}
-        </Wrap>
-      )}
-
-      {/* <ImageSlider />  */}
+      <ImageSlider /> 
+      <ImageSlider /> 
+      <ImageSlider /> 
     </Container>
   );
 }

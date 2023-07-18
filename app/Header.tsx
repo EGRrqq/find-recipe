@@ -5,14 +5,11 @@ import useMatchMedia from "@buildinams/use-match-media";
 import ImageSlider from "./ImageSlider";
 
 import {
-  IconButton,
   Input,
   VisuallyHidden,
-  Link as ChakraLink,
   Container,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
   Heading,
   HStack,
   useDisclosure,
@@ -31,11 +28,17 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { BiFilterAlt, BiFoodMenu } from "../ui/CustomIcons";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useRecipe } from "@/store";
-import SearchForm from "./SearchForm";
+
+
+// opening a modal window when the user clicks on the input button
+// width="full", rectangle with autocomplete
+
+{/* <datalist>
+  <option></option>
+</datalist>; */}
 
 const HeaderSecond = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,10 +65,10 @@ const HeaderSecond = () => {
 
   return (
     <Container
-      minW="full"
+      maxW="100%"
       as="header"
       bg="green.300"
-      paddingY={[32, 32, 36, 40, 44]}
+      paddingY={[null, 32, 36, 40, 44]}
     >
       <VisuallyHidden>
         <Heading as="h1" size="xs">
@@ -74,7 +77,6 @@ const HeaderSecond = () => {
       </VisuallyHidden>
 
       <HStack as="nav" spacing={4} justifyContent="center">
-        {/* <SearchForm inputVariant="filled" onOpen={onOpen} formWidth="container.lg" /> */}
         <Box
           as="form"
           width="container.lg"
@@ -106,7 +108,6 @@ const HeaderSecond = () => {
           </FormControl>
         </Box>
 
-
         {isMobile && (
           <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
@@ -129,8 +130,6 @@ const HeaderSecond = () => {
               <Divider colorScheme="gray" borderColor="gray.700" />
 
               <ModalBody>
-                {/* <SearchForm inputVariant="outline"  /> */}
-
                 <Box
                   as="form"
                   onSubmit={handleSubmit((data) =>

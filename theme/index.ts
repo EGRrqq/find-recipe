@@ -4,13 +4,14 @@ import { extendTheme } from '@chakra-ui/react'
 // import styles from './styles'
 
 // Foundational style overrides
-import { shadows } from './foundations'
+import { shadows, breakpoints } from './foundations'
 
 // Component style overrides
 import { buttonTheme, inputTheme } from './components'
 
 const overrides = {
   shadows,
+  breakpoints,
   // styles,
   // Other foundational style overrides go here
   components: {
