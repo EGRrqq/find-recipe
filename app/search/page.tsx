@@ -16,7 +16,6 @@ import {
 import { useRecipe } from "@/store";
 import { useStore } from "@/hooks";
 import RecipeCard from "../RecipeCard";
-import RecipeCardCopy from "../RecipeCardCopy";
 
 export default function SearchDetails() {
   const data = useStore(useRecipe, (state) => state);

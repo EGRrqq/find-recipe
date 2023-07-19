@@ -54,6 +54,7 @@ const recipeSchema = z.object({
         glycemicIndex: z.number(),
         totalCO2Emissions: z.number(),
         co2EmissionsClass: z.string(),
+        totalTime: z.number(),
         totalWeight: z.number(),
         cuisineType: z.array(z.string()),
         mealType: z.array(z.string()),

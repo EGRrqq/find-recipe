@@ -5,12 +5,18 @@ import {
   Container,
   Heading,
   Divider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
 import ImageSlider from "./ImageSlider";
+import ImageGallery from "./ImageGallery";
+import useMatchMedia from "@buildinams/use-match-media";
 
+import { dishType } from "@/constants"; 
 
 export default function HomePage() {
+  const isMobile = useMatchMedia("(max-width: 768px)", false);
+
   // blocks with recipes filtered by category
   // _____
   // each block has
@@ -55,17 +61,24 @@ export default function HomePage() {
 
   return (
     <Container as="main" minW="full" p={4} bg="red.50">
-      {/* <VisuallyHidden> */}
-      <Heading as="h2" size="lg">
-        View Recipes
-      </Heading>
-      {/* </VisuallyHidden> */}
+      <VisuallyHidden>
+        <Heading as="h2" size="lg">
+          View Recipes
+        </Heading>
+      </VisuallyHidden>
 
-      <Divider colorScheme="gray" borderColor="gray.700" />
+      {/* {dishType.map((dishType) => (
+        <ImageGallery dishType={dishType} key={dishType} />
+      ))} */}
 
-      <ImageSlider /> 
-      <ImageSlider /> 
-      <ImageSlider /> 
+      <ImageSlider />
+
+      {isMobile ? (
+        <ImageGallery direction="column" />
+      ) : (
+        <ImageGallery direction="row" />
+      )}
+
     </Container>
   );
 }

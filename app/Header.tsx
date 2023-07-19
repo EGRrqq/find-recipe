@@ -1,7 +1,6 @@
 "use client";
 
 import useMatchMedia from "@buildinams/use-match-media";
-
 import ImageSlider from "./ImageSlider";
 
 import {
@@ -32,20 +31,19 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useRecipe } from "@/store";
 
-
 // opening a modal window when the user clicks on the input button
 // width="full", rectangle with autocomplete
 
-{/* <datalist>
+{
+  /* <datalist>
   <option></option>
-</datalist>; */}
+</datalist>; */
+}
 
 const HeaderSecond = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const isMobile = useMatchMedia("(max-width: 768px)", true);
+  const isMobile = useMatchMedia("(max-width: 768px)", false);
   const router = useRouter();
-
   const getRecipesBySearch = useRecipe((state) => state.getRecipesBySearch);
 
   const {

@@ -3,13 +3,13 @@ import { IRecipeSearch } from '@/types'
 import { create } from 'zustand'
 import { persist, devtools } from 'zustand/middleware'
 
-interface IFindRecipe {
+interface IFindRecipeSearch {
     recipes: IRecipeSearch,
     loading: boolean,
-    getRecipesBySearch: (query: string) => Promise<void>
+    getRecipesBySearch: (query: string) => Promise<void>,
 }
 
-export const useRecipe = create<IFindRecipe>()(
+export const useRecipe = create<IFindRecipeSearch>()(
     devtools(
         persist(
             (set) => ({
@@ -29,7 +29,7 @@ export const useRecipe = create<IFindRecipe>()(
                 }
             }),
             {
-                name: 'recipe-storage',
+                name: 'recipe-search-storage',
             }
         )
     )

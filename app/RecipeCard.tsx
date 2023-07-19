@@ -8,7 +8,6 @@ import {
   Center,
   Divider,
   Heading,
-  Image as ChakraImage,
   Stack,
   Text,
   Link,
@@ -28,44 +27,47 @@ const RecipeCard = ({
   recipeUrl,
   recipeUrlName,
 }: IRecipeCard) => {
+  // todo on hover
+
   return (
-    <Card maxW="sm" w="full" h="full" bg="yellow.400" boxShadow="inner_BR" color="gray.700">
+    <Card
+      maxW="sm"
+      w="full"
+      h="full"
+      bg="yellow.400"
+      boxShadow="inner_BR"
+      color="gray.700"
+    >
       <CardHeader minW="300px">
         <Center>
           <Image
-            alt="w"
+            alt="yummy recipe image"
             src={src}
             height={300}
             width={300}
             style={{
+              boxShadow: "0px 0px 80px rgba(0, 0, 0, 0.05)",
               borderRadius: "8px",
               maxWidth: "100%",
               objectFit: "cover",
             }}
           />
         </Center>
-
-        {/* <Center>
-          <ChakraImage
-            src={src}
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-            width="full"
-          />
-        </Center> */}
       </CardHeader>
+
       <CardBody>
-        <Stack mt="6" spacing="3">
+        <Stack spacing="3">
           <Heading size="md" textAlign="center">
             {recipeName}
           </Heading>
         </Stack>
       </CardBody>
+
       <Divider />
+
       <CardFooter justifyContent="center">
-        <Text py="2">
-          See full recipe on:{" "}
-          <Link href={recipeUrl} isExternal>
+        <Text>
+          <Link href={recipeUrl} isExternal color="gray.700">
             {recipeUrlName}
           </Link>
         </Text>
