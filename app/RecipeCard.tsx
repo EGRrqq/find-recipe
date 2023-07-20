@@ -28,6 +28,7 @@ const RecipeCard = ({
   recipeUrlName,
 }: IRecipeCard) => {
   // todo on hover
+  // was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold
 
   return (
     <Card

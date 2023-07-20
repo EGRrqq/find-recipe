@@ -3,9 +3,9 @@ import { ZodError } from "zod"
 
 const baseLink = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.NEXT_PUBLIC_APP_ID}&app_key=${process.env.NEXT_PUBLIC_APP_KEY}`
 
-export async function getRecipesBySearch(searchQuerry: string) {
+export async function getRecipesBySearch(path: string) {
     try {
-        const result = await fetch(`${baseLink}&q=${searchQuerry}`).then(res => res.json())
+        const result = await fetch(`${baseLink}${path}`).then(res => res.json())
 
         // console.log('result', result)
         // const fetchRecipes = RecipeSearchSchema.parseAsync(result)

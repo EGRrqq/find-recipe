@@ -29,7 +29,8 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { useRecipe } from "@/store";
+import { usePath, useRecipe } from "@/store";
+import { shallow } from "zustand/shallow";
 
 // opening a modal window when the user clicks on the input button
 // width="full", rectangle with autocomplete
@@ -40,11 +41,15 @@ import { useRecipe } from "@/store";
 </datalist>; */
 }
 
-const HeaderSecond = () => {
+const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useMatchMedia("(max-width: 768px)", false);
   const router = useRouter();
   const getRecipesBySearch = useRecipe((state) => state.getRecipesBySearch);
+
+  const setQuery = usePath((state) => state.setQuery);
+  const path = usePath((state) => state.path);
+  console.log("path", path);
 
   const {
     handleSubmit,
@@ -78,8 +83,9 @@ const HeaderSecond = () => {
         <Box
           as="form"
           width="container.lg"
-          onSubmit={handleSubmit((data) =>
-            getRecipesBySearch(data.searchRecipe)
+          onSubmit={handleSubmit(
+            (data) => setQuery(`&q=${data.searchRecipe}`),
+            getRecipesBySearch(Object.values(path).join(""))
           )}
         >
           <FormControl isInvalid={errors.searchRecipe}>
@@ -130,8 +136,9 @@ const HeaderSecond = () => {
               <ModalBody>
                 <Box
                   as="form"
-                  onSubmit={handleSubmit((data) =>
-                    getRecipesBySearch(data.searchRecipe)
+                  onSubmit={handleSubmit(
+                    (data) => (data) => setQuery(`&q=${data.searchRecipe}`),
+                    getRecipesBySearch(Object.values(path).join(""))
                   )}
                 >
                   <FormControl isInvalid={errors.searchRecipe}>
@@ -185,4 +192,4 @@ const HeaderSecond = () => {
   );
 };
 
-export default HeaderSecond;
+export default Header;

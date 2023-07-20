@@ -11,15 +11,27 @@ import {
   AlertTitle,
   AlertDescription,
   SimpleGrid,
+  Divider,
+  Select,
+  Box,
 } from "@chakra-ui/react";
 
-import { useRecipe } from "@/store";
-import { useStore } from "@/hooks";
+import { usePath, useRecipe } from "@/store";
 import RecipeCard from "../RecipeCard";
+import { dishType } from "@/constants";
+import { shallow } from "zustand/shallow";
+import { useStore } from "@/hooks";
 
 export default function SearchDetails() {
-  const data = useStore(useRecipe, (state) => state);
-  console.log(data);
+  const recipes = useStore(useRecipe, (state) => state.recipes);
+  const loading = useStore(useRecipe, (state) => state.loading);
+
+  const setDishType = usePath((state) => state.setDishType);
+  const path = usePath((state) => state.path);
+
+  const getRecipesBySearch = useRecipe((state) => state.getRecipesBySearch);
+
+  console.log(recipes);
 
   // simple grid with recipe cards
 
@@ -31,7 +43,24 @@ export default function SearchDetails() {
         </Heading>
       </VisuallyHidden>
 
-      {data?.loading && (
+      <Box pb={8}>
+        <Select
+          placeholder="Select dish"
+          bg="tomato"
+          onChange={(e) => (
+            setDishType(`&dishType=${e.target.value}`),
+            getRecipesBySearch(Object.values(path).join(""))
+          )}
+        >
+          {dishType.map((dish) => (
+            <option key={dish} value={dish}>
+              {dish}
+            </option>
+          ))}
+        </Select>
+      </Box>
+
+      {loading && (
         <>
           <Alert status="loading">
             <AlertIcon />
@@ -62,7 +91,7 @@ export default function SearchDetails() {
         placeItems="center"
         overflow="hidden"
       >
-        {data?.recipes.hits.map((el) => (
+        {recipes?.hits.map((el) => (
           <RecipeCard
             src={el.recipe.image}
             key={el.recipe.image}
