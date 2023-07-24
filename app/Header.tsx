@@ -25,12 +25,15 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
+  InputRightElement,
+  IconButton,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { usePath, useRecipe } from "@/store";
 import { shallow } from "zustand/shallow";
+import { BiFilterAlt } from "@/ui/CustomIcons";
 
 // opening a modal window when the user clicks on the input button
 // width="full", rectangle with autocomplete
@@ -44,11 +47,14 @@ import { shallow } from "zustand/shallow";
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useMatchMedia("(max-width: 768px)", false);
-  const router = useRouter();
-  const getRecipesBySearch = useRecipe((state) => state.getRecipesBySearch);
 
+  const getRecipesBySearch = useRecipe((state) => state.getRecipesBySearch);
   const setQuery = usePath((state) => state.setQuery);
   const path = usePath((state) => state.path);
+
+  const router = useRouter();
+  const pathname = usePathname();
+
   console.log("path", path);
 
   const {
@@ -84,13 +90,18 @@ const Header = () => {
           as="form"
           width="container.lg"
           onSubmit={handleSubmit(
+            // compose
+            
             (data) => setQuery(`&q=${data.searchRecipe}`),
-            getRecipesBySearch(Object.values(path).join(""))
+            getRecipesBySearch(Object.values(path).join("")),
+            // () => router.push('/search'),
           )}
         >
           <FormControl isInvalid={errors.searchRecipe}>
             <FormLabel htmlFor="searchRecipe">Find Recipe</FormLabel>
 
+            {/* onClick={onOpen} -> rerender cause */}
+            
             <InputGroup variant="filled" onClick={onOpen} size="lg">
               <InputLeftElement>
                 <SearchIcon color="gray.700" />
@@ -104,6 +115,19 @@ const Header = () => {
                   // required: "This is required",
                 })}
               />
+
+              {pathname !== "/" && (
+                <>
+                  <InputRightElement borderLeft="1px solid #718096">
+                    <IconButton
+                      color="gray.700"
+                      aria-label="search button"
+                      icon={<BiFilterAlt />}
+                      variant="ghost"
+                    />
+                  </InputRightElement>
+                </>
+              )}
             </InputGroup>
 
             <FormErrorMessage>
