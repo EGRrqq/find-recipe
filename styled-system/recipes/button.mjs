@@ -2,15 +2,13 @@ import { splitProps } from '../helpers.mjs';
 import { createRecipe } from './create-recipe.mjs';
 
 const buttonFn = createRecipe('button', {
-  "visual": "funky",
-  "size": "sm",
-  "shape": "circle"
+  "visual": "fill",
+  "size": "md"
 }, [])
 
 const variantKeys = [
   "visual",
-  "size",
-  "shape"
+  "size"
 ]
 
 function splitVariantProps(props) {
@@ -22,16 +20,13 @@ export const button = Object.assign(buttonFn, {
   variantKeys,
   variantMap: {
   "visual": [
-    "funky",
-    "edgy"
+    "fill",
+    "outline"
   ],
   "size": [
     "sm",
+    "md",
     "lg"
-  ],
-  "shape": [
-    "square",
-    "circle"
   ]
 },
   splitVariantProps,

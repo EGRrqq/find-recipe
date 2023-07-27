@@ -1656,7 +1656,7 @@ const tokens = {
     "variable": "var(--shadows-inner-br)"
   },
   "shadows.innerBr_ext": {
-    "value": "inset -2px -4px #718096",
+    "value": "inset -2px -6px #718096",
     "variable": "var(--shadows-inner-br_ext)"
   },
   "breakpoints.sm": {

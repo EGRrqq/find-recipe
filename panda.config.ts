@@ -1,4 +1,4 @@
-import { inputRecipe } from "@/ui"
+import { inputRecipe, buttonRecipe } from "@/ui"
 import { defineConfig } from "@pandacss/dev"
 
 export default defineConfig({
@@ -12,11 +12,12 @@ export default defineConfig({
     extend: {
       recipes: {
         input: inputRecipe,
+        button: buttonRecipe,
       },
       tokens: {
         shadows: {
           innerBr: { value: 'inset -2px -2px #718096' },
-          innerBr_ext: { value: 'inset -2px -4px #718096' },
+          innerBr_ext: { value: 'inset -2px -6px #718096' },
         }
       }
     }

@@ -3,9 +3,8 @@ import type { ConditionalValue } from '../types'
 import type { Pretty } from '../types/helpers'
 
 type ButtonVariant = {
-  visual: "funky" | "edgy"
-size: "sm" | "lg"
-shape: "square" | "circle"
+  visual: "fill" | "outline"
+size: "sm" | "md" | "lg"
 }
 
 type ButtonVariantMap = {
