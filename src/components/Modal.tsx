@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useState, KeyboardEventHandler } from "react";
-import { Box, Container, VStack } from "../../styled-system/jsx";
+import { Box, Container, Flex, VStack } from "../../styled-system/jsx";
 import { center } from "../../styled-system/patterns";
 import { css } from "../../styled-system/css";
 
@@ -12,7 +12,6 @@ interface ModalProps {
 const Modal = (props: ModalProps) => {
   const { children } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  console.log("isOpen", isOpen);
 
   const openHandler = () => setIsOpen(!isOpen);
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (e) => {
@@ -21,46 +20,48 @@ const Modal = (props: ModalProps) => {
 
   return (
     <Container
-      border="1px solid tomato"
-      borderRadius={"8px"}
-      p={4}
-      w={"screen"}
-      h={"screen"}
+      w={"full"}
+      h={"full"}
       position={"relative"}
-      className={center({ flexDirection: "column", gap: "5" })}
+      display={"flex"}
+      justifyContent={"center"}
     >
-      <Box onClick={openHandler}>
+      <Box
+        onClick={openHandler}
+        w={"full"}
+        h={"full"}
+        position={"relative"}
+        className={center({ flexDirection: "column", gap: "5" })}
+      >
         {children}
       </Box>
 
       {isOpen && (
         <Box
-          className={center({
-            bg: "gray.100",
-            w: "full",
-            h: "full",
+          className={css({
+            bg: "rgba(0, 0, 0, 0.5)",
+            w: "screen",
+            h: "screen",
             position: "fixed",
           })}
-          bg="rgba(0, 0, 0, 0.5)"
-          onClick={openHandler}
           tabIndex={-1}
+          onClick={openHandler}
           onKeyDown={handleKeyDown}
         >
           <VStack
             role="dialog"
             className={center({
               bg: "gray.100",
-              w: "1/2",
-              h: "1/2",
+              w: "screen",
+              h: "fit-content",
+              p: "8",
             })}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={handleKeyDown}
           >
             {children}
-            <button
-              aria-label="close modal button"
-              onClick={openHandler}
-            >
+
+            <button aria-label="close modal button" onClick={openHandler}>
               &times;
             </button>
           </VStack>
