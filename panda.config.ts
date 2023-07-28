@@ -1,4 +1,4 @@
-import { inputRecipe, buttonRecipe } from "@/ui"
+import { inputRecipe, buttonRecipe } from "@/ui-recipes"
 import { defineConfig } from "@pandacss/dev"
 
 export default defineConfig({

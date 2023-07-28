@@ -1,14 +1,15 @@
 import { defineRecipe } from '@pandacss/dev'
 
-export const buttonRecipe = defineRecipe({
-  name: 'button',
-  description: 'The styles for the Button component',
+export const inputRecipe = defineRecipe({
+  name: 'input',
+  description: 'The styles for the Input component',
   base: {
     color: 'gray.700',
 
     rounded: '8px',
     px: '16px',
     py: '12px',
+    width: '2/4',
 
     boxShadow: "innerBr",
 
@@ -16,14 +17,15 @@ export const buttonRecipe = defineRecipe({
       boxShadow: "innerBr_ext"
     },
 
-    _active: {
-      boxShadow: "innerBr",
-    }
+    _focus: {
+      boxShadow: "innerBr_ext",
+      outline: 'none',
+    },
   },
 
   variants: {
     visual: {
-      fill: { bg: 'gray.100' },
+      fill: { bg: 'stone.100' },
       outline: { bg: 'none', outline: '2px solid #718096' },
     },
     size: {
@@ -40,5 +42,5 @@ export const buttonRecipe = defineRecipe({
     size: 'md',
   },
 
-  jsx: ['Button']
+  jsx: ['Modal'],
 })
