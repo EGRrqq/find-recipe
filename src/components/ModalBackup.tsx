@@ -22,7 +22,7 @@ const bodyStyle: CenterOptions | undefined = {
   gap: "5",
 };
 
-const Modal = (props: ModalProps) => {
+const ModalBackup = (props: ModalProps) => {
   const { children } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -55,7 +55,6 @@ const Modal = (props: ModalProps) => {
             role="dialog"
             className={center(bodyStyle)}
             onClick={(e) => e.stopPropagation()}
-            onKeyDown={handleKeyDown}
           >
             {children}
 
@@ -73,4 +72,4 @@ const Modal = (props: ModalProps) => {
   );
 };
 
-export default Modal;
+export default ModalBackup;
