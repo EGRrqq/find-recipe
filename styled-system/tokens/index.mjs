@@ -1659,6 +1659,10 @@ const tokens = {
     "value": "inset -2px -6px #718096",
     "variable": "var(--shadows-inner-br_ext)"
   },
+  "zIndex.modal": {
+    "value": 1000,
+    "variable": "var(--z-index-modal)"
+  },
   "breakpoints.sm": {
     "value": "640px",
     "variable": "var(--breakpoints-sm)"

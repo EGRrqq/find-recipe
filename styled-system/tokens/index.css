@@ -415,6 +415,7 @@
   --shadows-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --shadows-inner-br: inset -2px -2px #718096;
   --shadows-inner-br_ext: inset -2px -6px #718096;
+  --z-index-modal: 1000;
   --breakpoints-sm: 640px;
   --breakpoints-md: 768px;
   --breakpoints-lg: 1024px;

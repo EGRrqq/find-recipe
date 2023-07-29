@@ -18,6 +18,9 @@ export default defineConfig({
         shadows: {
           innerBr: { value: 'inset -2px -2px #718096' },
           innerBr_ext: { value: 'inset -2px -6px #718096' },
+        },
+        zIndex: {
+          modal: { value: 1000 }
         }
       }
     }

@@ -15,7 +15,7 @@ const ModalContainer = (props: ModalContainerProps) => {
       position={"relative"}
       display={"flex"}
       justifyContent={"center"}
-      zIndex={1000}
+      zIndex={"modal"}
       {...props}
     >
       {children}
