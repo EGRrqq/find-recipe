@@ -1,13 +1,26 @@
 "use client";
 
 import { ReactNode, useState, KeyboardEventHandler } from "react";
-import { Box, Container, Flex, VStack } from "../../styled-system/jsx";
-import { center } from "../../styled-system/patterns";
+import { Box, VstackProps } from "../../styled-system/jsx";
+import { CenterOptions, center } from "../../styled-system/patterns";
 import { css } from "../../styled-system/css";
+import { poly } from "@/utils";
 
 interface ModalProps {
   children: ReactNode;
 }
+
+const Container = poly("article");
+const VStack = poly("section");
+
+const bodyStyle: CenterOptions | undefined = {
+  bg: "green.400",
+  w: "full",
+  h: "fit-content",
+  p: "8",
+  flexDirection: "column",
+  gap: "5",
+};
 
 const Modal = (props: ModalProps) => {
   const { children } = props;
@@ -26,17 +39,7 @@ const Modal = (props: ModalProps) => {
       display={"flex"}
       justifyContent={"center"}
     >
-      <Box
-        onClick={openHandler}
-        w={"full"}
-        h={"full"}
-        position={"relative"}
-        className={center({ flexDirection: "column", gap: "5" })}
-      >
-        {children}
-      </Box>
-
-      {isOpen && (
+      {isOpen ? (
         <Box
           className={css({
             bg: "rgba(0, 0, 0, 0.5)",
@@ -50,12 +53,7 @@ const Modal = (props: ModalProps) => {
         >
           <VStack
             role="dialog"
-            className={center({
-              bg: "gray.100",
-              w: "screen",
-              h: "fit-content",
-              p: "8",
-            })}
+            className={center(bodyStyle)}
             onClick={(e) => e.stopPropagation()}
             onKeyDown={handleKeyDown}
           >
@@ -66,6 +64,10 @@ const Modal = (props: ModalProps) => {
             </button>
           </VStack>
         </Box>
+      ) : (
+        <VStack onClick={openHandler} className={center(bodyStyle)}>
+          {children}
+        </VStack>
       )}
     </Container>
   );

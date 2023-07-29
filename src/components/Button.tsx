@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { ButtonVariantProps, button } from "../../styled-system/recipes";
 
-type ButtonProps = ButtonVariantProps & {
+interface ButtonProps extends ButtonVariantProps {
   children: ReactNode;
 };
 
