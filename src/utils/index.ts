@@ -1,1 +1,0 @@
-export { poly } from './poly'

@@ -1,5 +1,5 @@
 {
-  "name": "find-recipe_panda",
+  "name": "find-recipe_panda_ark",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,12 +11,10 @@
   },
   "dependencies": {
     "@ark-ui/react": "^0.9.0",
-    "@chakra-ui/visually-hidden": "^2.1.0",
-    "@polymorphic-factory/react": "^0.4.1",
-    "@types/node": "20.4.4",
-    "@types/react": "18.2.15",
+    "@types/node": "20.4.5",
+    "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
-    "eslint": "8.45.0",
+    "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
     "react": "18.2.0",
@@ -24,6 +22,6 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.7.0"
+    "@pandacss/dev": "^0.9.0"
   }
 }

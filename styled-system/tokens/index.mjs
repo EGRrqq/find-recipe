@@ -235,6 +235,34 @@ const tokens = {
     "value": "8rem",
     "variable": "var(--font-sizes-9xl)"
   },
+  "shadows.xs": {
+    "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+    "variable": "var(--shadows-xs)"
+  },
+  "shadows.sm": {
+    "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+    "variable": "var(--shadows-sm)"
+  },
+  "shadows.md": {
+    "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+    "variable": "var(--shadows-md)"
+  },
+  "shadows.lg": {
+    "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+    "variable": "var(--shadows-lg)"
+  },
+  "shadows.xl": {
+    "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+    "variable": "var(--shadows-xl)"
+  },
+  "shadows.2xl": {
+    "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+    "variable": "var(--shadows-2xl)"
+  },
+  "shadows.inner": {
+    "value": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+    "variable": "var(--shadows-inner)"
+  },
   "colors.current": {
     "value": "currentColor",
     "variable": "var(--colors-current)"
@@ -1622,46 +1650,6 @@ const tokens = {
   "animations.bounce": {
     "value": "bounce 1s infinite",
     "variable": "var(--animations-bounce)"
-  },
-  "shadows.xs": {
-    "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-    "variable": "var(--shadows-xs)"
-  },
-  "shadows.sm": {
-    "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-    "variable": "var(--shadows-sm)"
-  },
-  "shadows.md": {
-    "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-    "variable": "var(--shadows-md)"
-  },
-  "shadows.lg": {
-    "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-    "variable": "var(--shadows-lg)"
-  },
-  "shadows.xl": {
-    "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-    "variable": "var(--shadows-xl)"
-  },
-  "shadows.2xl": {
-    "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
-    "variable": "var(--shadows-2xl)"
-  },
-  "shadows.inner": {
-    "value": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
-    "variable": "var(--shadows-inner)"
-  },
-  "shadows.innerBr": {
-    "value": "inset -2px -2px #718096",
-    "variable": "var(--shadows-inner-br)"
-  },
-  "shadows.innerBr_ext": {
-    "value": "inset -2px -6px #718096",
-    "variable": "var(--shadows-inner-br_ext)"
-  },
-  "zIndex.modal": {
-    "value": 1000,
-    "variable": "var(--z-index-modal)"
   },
   "breakpoints.sm": {
     "value": "640px",

@@ -59,6 +59,13 @@
   --font-sizes-7xl: 4.5rem;
   --font-sizes-8xl: 6rem;
   --font-sizes-9xl: 8rem;
+  --shadows-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadows-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadows-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadows-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadows-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadows-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadows-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --colors-current: currentColor;
   --colors-black: #000;
   --colors-white: #fff;
@@ -406,32 +413,11 @@
   --animations-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   --animations-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animations-bounce: bounce 1s infinite;
-  --shadows-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadows-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadows-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadows-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadows-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadows-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  --shadows-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-  --shadows-inner-br: inset -2px -2px #718096;
-  --shadows-inner-br_ext: inset -2px -6px #718096;
-  --z-index-modal: 1000;
   --breakpoints-sm: 640px;
   --breakpoints-md: 768px;
   --breakpoints-lg: 1024px;
   --breakpoints-xl: 1280px;
-  --breakpoints-2xl: 1536px;
-  --colors-color-palette-50: var(--colors-color-palette-50);
-  --colors-color-palette-100: var(--colors-color-palette-100);
-  --colors-color-palette-200: var(--colors-color-palette-200);
-  --colors-color-palette-300: var(--colors-color-palette-300);
-  --colors-color-palette-400: var(--colors-color-palette-400);
-  --colors-color-palette-500: var(--colors-color-palette-500);
-  --colors-color-palette-600: var(--colors-color-palette-600);
-  --colors-color-palette-700: var(--colors-color-palette-700);
-  --colors-color-palette-800: var(--colors-color-palette-800);
-  --colors-color-palette-900: var(--colors-color-palette-900);
-  --colors-color-palette-950: var(--colors-color-palette-950)
+  --breakpoints-2xl: 1536px
 }
   }
   
