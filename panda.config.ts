@@ -1,4 +1,5 @@
 import { defineConfig } from "@pandacss/dev"
+import { recipes } from "@/theme/recipes"
 
 export default defineConfig({
   preflight: true,
@@ -13,6 +14,43 @@ export default defineConfig({
         '&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state=indeterminate])',
       closed: '&:is([data-state=closed])',
       open: '&:is([open], [data-state=open])',
+    }
+  },
+  theme: {
+    extend: {
+      recipes,
+      semanticTokens: {
+        colors: {
+          fg: {
+            default: { value: { base: '{colors.slate.700}', } },
+            placeholder: { value: { base: '{colors.slate.400}', } },
+          },
+          bg: {
+            canvas: { value: { base: '{colors.red.50}', } },
+            emphasized: { value: { base: '{colors.green.400}', } },
+            surface: { value: { base: '{colors.slate.100}', } },
+          },
+          accent: {
+            default: { value: { base: '{colors.yellow.400}', } },
+            emphasized: { value: { base: '{colors.red.400}', } },
+          },
+          border: {
+            default: { value: { base: '{colors.slate.500}', } },
+          },
+        },
+        shadows: {
+          innerBr: {
+            value: {
+              base: 'inset -2px -2px {colors.slate.500}',
+            }
+          },
+          innerBr_ext: {
+            value: {
+              base: 'inset -2px -6px {colors.slate.500}',
+            }
+          },
+        },
+      },
     }
   },
 
