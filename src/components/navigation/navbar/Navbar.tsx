@@ -1,5 +1,9 @@
+import { ArrowRightIcon } from "@/app/icons/ArrowRightIcon";
+import { TestIcon } from "@/app/icons/TestIcon";
 import { Input } from "@/components/shared";
-import { Flex, HStack, VStack, styled } from "@/panda/jsx";
+import { Button } from "@/components/shared/Button";
+import { IconButton } from "@/components/shared/IconButton";
+import { Flex, VStack, styled } from "@/panda/jsx";
 import { center } from "@/panda/patterns";
 
 const Navbar = () => {
@@ -9,6 +13,19 @@ const Navbar = () => {
         <VStack my={40} w={"xl"}>
           <Input variant={"filled"} type="search" />
           <Input variant={"outline"} type="search" />
+        </VStack>
+
+        <VStack my={40} w={"xl"}>
+          <Button
+            leftIcon={<TestIcon width={"25px"} height={"25px"} />}
+            rightIcon={<ArrowRightIcon width={"25px"} height={"25px"} />}
+          >
+            yo
+          </Button>
+
+          <IconButton aria-label="test">
+            <TestIcon />
+          </IconButton>
         </VStack>
       </Flex>
     </styled.nav>
