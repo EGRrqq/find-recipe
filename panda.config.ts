@@ -38,18 +38,6 @@ export default defineConfig({
             default: { value: { base: '{colors.slate.500}', } },
           },
         },
-        shadows: {
-          innerBr: {
-            value: {
-              base: 'inset -2px -2px {colors.slate.500}',
-            }
-          },
-          innerBr_ext: {
-            value: {
-              base: 'inset -2px -6px {colors.slate.500}',
-            }
-          },
-        },
       },
     }
   },
