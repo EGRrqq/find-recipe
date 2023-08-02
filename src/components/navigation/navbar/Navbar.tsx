@@ -3,6 +3,7 @@ import { TestIcon } from "@/app/icons/TestIcon";
 import { Input } from "@/components/shared";
 import { Button } from "@/components/shared/Button";
 import { IconButton } from "@/components/shared/IconButton";
+import { css } from "@/panda/css";
 import { Flex, VStack, panda } from "@/panda/jsx";
 import { center } from "@/panda/patterns";
 
@@ -11,8 +12,21 @@ const Navbar = () => {
     <panda.nav role={"navigation"} position={"sticky"} bg={"bg.emphasized"}>
       <Flex className={center({})}>
         <VStack my={40} w={"xl"}>
-          <Input variant={"filled"} type="search" />
-          <Input variant={"outline"} type="search" />
+          <Input
+            type="search"
+            placeholder="find recipe"
+            size={"lg"}
+            leftIcon={<TestIcon />}
+            rightIcon={<ArrowRightIcon />}
+          />
+          <Input
+            type="search"
+            placeholder="find recipe"
+            size={"lg"}
+            variant={"outline"}
+            leftIcon={<TestIcon />}
+            rightIcon={<ArrowRightIcon />}
+          />
         </VStack>
 
         <VStack my={40} w={"xl"}>
@@ -24,7 +38,7 @@ const Navbar = () => {
           </Button>
 
           <IconButton aria-label="test">
-            <TestIcon />
+            <TestIcon className={css({ m: 1 })} />
           </IconButton>
         </VStack>
       </Flex>

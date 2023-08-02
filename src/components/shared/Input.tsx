@@ -1,19 +1,54 @@
 import { panda, type HTMLPandaProps } from "@/panda/jsx";
 import { input, type InputVariantProps } from "@/panda/recipes";
+import {
+  ReactElement,
+  ReactNode,
+  cloneElement,
+  isValidElement,
+} from "react";
 
-export type InputProps = Omit<HTMLPandaProps<"input">, "size"> &
-  InputVariantProps;
+type InputContentProps = {
+  children?: ReactNode | undefined;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
+};
 
-const Input = (props: InputProps) => {
-  const { variant, size, ...rest } = props;
+export type InputProps = InputVariantProps &
+  InputContentProps &
+  HTMLPandaProps<"input">;
+
+export const Input = (props: InputProps) => {
+  const { variant, size, leftIcon, rightIcon, children, ...rest } = props;
+
   return (
-    <panda.input
+    <panda.div
       data-scope="input"
       data-part="root"
       className={input({ variant, size })}
-      {...rest}
-    />
+    >
+      {leftIcon && <InputIcon mr="var(--icon-spacing)">{leftIcon}</InputIcon>}
+
+      <panda.input {...rest} data-scope="input" data-part="content" />
+
+      {rightIcon && <InputIcon ml="var(--icon-spacing)">{rightIcon}</InputIcon>}
+    </panda.div>
   );
 };
 
-export default Input;
+const InputIcon = (props: HTMLPandaProps<"span">) => {
+  const { children, ...rest } = props;
+
+  const _children = isValidElement(children)
+    ? cloneElement(children, {
+        // @ts-expect-error typings are wrong
+        "aria-hidden": true,
+        focusable: false,
+      })
+    : children;
+
+  return (
+    <panda.span data-scope="input" data-part="icon" {...rest}>
+      {_children}
+    </panda.span>
+  );
+};

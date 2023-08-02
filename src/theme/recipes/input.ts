@@ -1,55 +1,84 @@
 import { createAnatomy } from '@ark-ui/react'
 import { defineParts, defineRecipe } from '@pandacss/dev'
 
-const anatomy = createAnatomy('input', ['root', 'icon'])
+const anatomy = createAnatomy('input', ['root', 'icon', 'content'])
 const parts = defineParts(anatomy.build())
 
 export const input = defineRecipe({
   className: 'input',
+  jsx: ['Input'],
   base: parts({
     root: {
-      color: 'fg.default',
-      textAlign: 'left',
-      w: 'full',
-      minW: 0,
-      outline: 0,
-      rounded: 'lg',
       position: 'relative',
-      appearance: 'none',
-      transitionProperty: 'base',
-      transitionDuration: '100',
-      _disabled: {
-        opacity: 0.4,
-        cursor: 'not-allowed',
-      },
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      w: 'full',
+      rounded: 'lg',
+      boxShadow: '2px 2px var(--shadow)',
       '--shadow': {
         base: 'colors.slate.500',
       },
-      boxShadow: '2px 2px var(--shadow)',
-      _focus: {
-        zIndex: 1,
-        boxShadow: '2px 4px var(--shadow)',
+      '--text': {
+        base: 'colors.slate.700',
       },
+      "&:has(:disabled)": {
+        opacity: 0.4,
+        cursor: 'not-allowed',
+      }
+    },
+    content: {
+      textAlign: 'left',
+      color: 'var(--text)',
+      appearance: 'none',
+      display: 'flex',
+      width: 'full',
+      height: 'full',
+      borderRadius: 'lg',
+      border: 'none',
+      outline: 'none',
+      bg: 'transparent',
+      _disabled: {
+        cursor: 'not-allowed',
+      }
     },
     icon: {
+      color: 'var(--text)',
       display: 'inline-flex',
       alignSelf: 'center',
       flexShrink: '0',
+      w: '25px',
+      h: '25px',
     },
   }),
   variants: {
     variant: {
-      filled: {
-        bg: {
-          base: 'slate.100',
+      filled: parts({
+        root: {
+          bg: {
+            base: 'slate.100',
+          },
+          _focusWithin: {
+            zIndex: 1,
+            boxShadow: '2px 4px var(--shadow)',
+            outline: '2px solid var(--shadow)'
+          },
         },
-      },
-      outline: {
-        bg: {
-          base: 'transparent',
+      }),
+      outline: parts({
+        root: {
+          border: "2px solid var(--shadow)",
+          bg: {
+            base: 'transparent',
+          },
+          _focusWithin: {
+            zIndex: 1,
+            border: '2px solid',
+            borderColor: 'slate.100',
+            boxShadow: '2px 4px var(--shadow)',
+          },
         },
-        border: "2px solid var(--shadow)",
-      },
+      }),
     },
     size: {
       xs: parts({
@@ -61,7 +90,7 @@ export const input = defineRecipe({
         },
         icon: {
           fontSize: '1.0rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       sm: parts({
@@ -73,7 +102,7 @@ export const input = defineRecipe({
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       md: parts({
@@ -85,7 +114,7 @@ export const input = defineRecipe({
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       lg: parts({
@@ -97,7 +126,7 @@ export const input = defineRecipe({
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       xl: parts({
@@ -109,7 +138,7 @@ export const input = defineRecipe({
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       '2xl': parts({
@@ -121,7 +150,9 @@ export const input = defineRecipe({
         },
         icon: {
           fontSize: '1.5rem',
-          '--icon-spacing': '0.75rem',
+          '--icon-spacing': '1rem',
+          w: '40px',
+          h: '40px',
         },
       }),
     },
