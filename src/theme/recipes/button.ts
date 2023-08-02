@@ -1,10 +1,12 @@
 import { createAnatomy } from '@ark-ui/react'
 import { defineParts, defineRecipe } from '@pandacss/dev'
 
-const parts = defineParts(createAnatomy('button').parts('root', 'icon').build())
+const anatomy = createAnatomy('button', ['root', 'icon'])
+const parts = defineParts(anatomy.build())
 
 export const button = defineRecipe({
   className: 'button',
+  jsx: ['Button', 'IconButton'],
   base: parts({
     root: {
       alignItems: 'center',
@@ -30,6 +32,8 @@ export const button = defineRecipe({
       display: 'inline-flex',
       alignSelf: 'center',
       flexShrink: '0',
+      w: '25px',
+      h: '25px',
     },
   }),
   variants: {
@@ -69,7 +73,7 @@ export const button = defineRecipe({
         },
         icon: {
           fontSize: '1.0rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       sm: parts({
@@ -81,7 +85,7 @@ export const button = defineRecipe({
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       md: parts({
@@ -89,47 +93,49 @@ export const button = defineRecipe({
           h: '10',
           minW: '10',
           textStyle: 'sm',
-          px: '4',
+          px: '3.5',
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       lg: parts({
         root: {
           h: '11',
           minW: '11',
-          px: '4.5',
           textStyle: 'md',
+          px: '4',
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       xl: parts({
         root: {
           h: '12',
           minW: '12',
-          px: '5',
           textStyle: 'md',
+          px: '5',
         },
         icon: {
           fontSize: '1.25rem',
-          '--icon-spacing': '0.5rem',
+          '--icon-spacing': '0.75rem',
         },
       }),
       '2xl': parts({
         root: {
-          h: '15',
-          minW: '15',
-          px: '7',
-          fontSize: 'lg',
+          h: '16',
+          minW: '16',
+          textStyle: '3xl',
+          px: '6',
         },
         icon: {
           fontSize: '1.5rem',
-          '--icon-spacing': '0.75rem',
+          '--icon-spacing': '1rem',
+          w: '40px',
+          h: '40px',
         },
       }),
     },
