@@ -3,12 +3,12 @@ import { TestIcon } from "@/app/icons/TestIcon";
 import { Input } from "@/components/shared";
 import { Button } from "@/components/shared/Button";
 import { IconButton } from "@/components/shared/IconButton";
-import { Flex, VStack, styled } from "@/panda/jsx";
+import { Flex, VStack, panda } from "@/panda/jsx";
 import { center } from "@/panda/patterns";
 
 const Navbar = () => {
   return (
-    <styled.nav role={"navigation"} position={"sticky"} bg={"bg.emphasized"}>
+    <panda.nav role={"navigation"} position={"sticky"} bg={"bg.emphasized"}>
       <Flex className={center({})}>
         <VStack my={40} w={"xl"}>
           <Input variant={"filled"} type="search" />
@@ -28,7 +28,7 @@ const Navbar = () => {
           </IconButton>
         </VStack>
       </Flex>
-    </styled.nav>
+    </panda.nav>
   );
 };
 

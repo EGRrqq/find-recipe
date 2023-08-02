@@ -1,6 +1,6 @@
 'use client'
 
-import { styled, type HTMLStyledProps } from '@/panda/jsx'
+import { panda, type HTMLPandaProps } from '@/panda/jsx'
 import { button, type ButtonVariantProps } from '@/panda/recipes'
 import NextLink, { type LinkProps } from 'next/link'
 import {
@@ -18,8 +18,8 @@ type ButtonContentProps = {
 }
 
 export type ButtonProps = ButtonVariantProps &
-  ButtonContentProps & { href?: LinkProps['href'] } & HTMLStyledProps<'button'> &
-  HTMLStyledProps<'a'>
+  ButtonContentProps & { href?: LinkProps['href'] } & HTMLPandaProps<'button'> &
+  HTMLPandaProps<'a'>
 
 export const Button = (props: ButtonProps) => {
   const { variant, href, size, leftIcon, rightIcon, children, ...rest } = props
@@ -27,7 +27,7 @@ export const Button = (props: ButtonProps) => {
   if (href) {
     return (
       <NextLink legacyBehavior href={href} passHref>
-        <styled.a
+        <panda.a
           {...rest}
           className={button({ variant, size })}
           data-scope="button"
@@ -36,13 +36,13 @@ export const Button = (props: ButtonProps) => {
           <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon}>
             {children}
           </ButtonContent>
-        </styled.a>
+        </panda.a>
       </NextLink>
     )
   }
 
   return (
-    <styled.button
+    <panda.button
       {...rest}
       className={button({ variant, size })}
       data-scope="button"
@@ -51,7 +51,7 @@ export const Button = (props: ButtonProps) => {
       <ButtonContent leftIcon={leftIcon} rightIcon={rightIcon}>
         {children}
       </ButtonContent>
-    </styled.button>
+    </panda.button>
   )
 }
 
@@ -66,7 +66,7 @@ const ButtonContent = (props: PropsWithChildren<ButtonContentProps>) => {
   )
 }
 
-const ButtonIcon = (props: HTMLStyledProps<'span'>) => {
+const ButtonIcon = (props: HTMLPandaProps<'span'>) => {
   const { children, ...rest } = props
 
   const _children = isValidElement(children)
@@ -78,8 +78,8 @@ const ButtonIcon = (props: HTMLStyledProps<'span'>) => {
     : children
 
   return (
-    <styled.span data-scope="button" data-part="icon" {...rest}>
+    <panda.span data-scope="button" data-part="icon" {...rest}>
       {_children}
-    </styled.span>
+    </panda.span>
   )
 }

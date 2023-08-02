@@ -25,13 +25,6 @@ export const button = defineRecipe({
       '--shadow': {
         base: 'colors.slate.500',
       },
-      _hover: {
-        boxShadow: '2px 4px var(--shadow)'
-      },
-      _active: {
-        boxShadow: 'none'
-      },
-
     },
     icon: {
       display: 'inline-flex',
@@ -45,17 +38,24 @@ export const button = defineRecipe({
         bg: {
           base: 'slate.100',
         },
-        _focus: {
-          boxShadow: '2px 4px var(--shadow)'
+        "&:hover, &:focus-visible": { 
+          boxShadow: '2px 4px var(--shadow)' 
+        },
+        _active: {
+          boxShadow: '2px 2px var(--shadow)'
         },
       },
       outline: {
+        boxShadow: 'none',
+        border: "2px solid var(--shadow)",
         bg: {
           base: 'transparent',
         },
-        border: "2px solid var(--shadow)",
-        _focus: {
-          border: '2px solid blue',
+        "&:hover, &:focus-visible": { 
+          boxShadow: '2px 2px var(--shadow)'
+        },
+        _active: {
+          boxShadow: 'none'
         },
       },
     },

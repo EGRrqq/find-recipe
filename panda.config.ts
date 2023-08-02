@@ -1,11 +1,14 @@
 import { defineConfig } from "@pandacss/dev"
 import { recipes } from "@/theme/recipes"
+import { globalCss } from '@/theme/global-css'
 
 export default defineConfig({
   preflight: true,
   include: ["./src/components/**/*.{ts,tsx,js,jsx}", "./src/app/**/*.{ts,tsx,js,jsx}"],
   presets: ['@pandacss/dev/presets'],
   jsxFramework: 'react',
+  jsxFactory: 'panda',
+  globalCss,
   conditions: {
     extend: {
       checked:
