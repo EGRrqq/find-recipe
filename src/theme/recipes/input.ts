@@ -6,7 +6,7 @@ const parts = defineParts(anatomy.build())
 
 export const input = defineRecipe({
   className: 'input',
-  jsx: ['Input'],
+  jsx: ['Input', 'TestIcon', 'ArrowRightIcon'],
   base: parts({
     root: {
       position: 'relative',
@@ -15,10 +15,7 @@ export const input = defineRecipe({
       justifyContent: 'space-evenly',
       w: 'full',
       rounded: 'lg',
-      boxShadow: '2px 2px var(--shadow)',
-      '--shadow': {
-        base: 'colors.slate.500',
-      },
+      boxShadow: '2px 2px var(--global-color-shadow)',
       '--text': {
         base: 'colors.slate.700',
       },
@@ -60,14 +57,14 @@ export const input = defineRecipe({
           },
           _focusWithin: {
             zIndex: 1,
-            boxShadow: '2px 4px var(--shadow)',
-            outline: '2px solid var(--shadow)'
+            boxShadow: '2px 4px var(--global-color-shadow)',
+            outline: '2px solid var(--global-color-shadow)'
           },
         },
       }),
       outline: parts({
         root: {
-          border: "2px solid var(--shadow)",
+          border: "2px solid var(--global-color-shadow)",
           bg: {
             base: 'transparent',
           },
@@ -75,7 +72,7 @@ export const input = defineRecipe({
             zIndex: 1,
             border: '2px solid',
             borderColor: 'slate.100',
-            boxShadow: '2px 4px var(--shadow)',
+            boxShadow: '2px 4px var(--global-color-shadow)',
           },
         },
       }),

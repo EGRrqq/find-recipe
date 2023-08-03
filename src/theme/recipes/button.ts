@@ -6,7 +6,7 @@ const parts = defineParts(anatomy.build())
 
 export const button = defineRecipe({
   className: 'button',
-  jsx: ['Button', 'IconButton'],
+  jsx: ['Button', 'IconButton', 'TestIcon', 'ArrowRightIcon'],
   base: parts({
     root: {
       alignItems: 'center',
@@ -24,9 +24,7 @@ export const button = defineRecipe({
       userSelect: 'none',
       verticalAlign: 'middle',
       whiteSpace: 'nowrap',
-      '--shadow': {
-        base: 'colors.slate.500',
-      },
+
     },
     icon: {
       display: 'inline-flex',
@@ -43,20 +41,20 @@ export const button = defineRecipe({
           base: 'slate.100',
         },
         "&:hover, &:focus-visible": { 
-          boxShadow: '2px 4px var(--shadow)' 
+          boxShadow: '2px 4px var(--global-color-shadow)' 
         },
         _active: {
-          boxShadow: '2px 2px var(--shadow)'
+          boxShadow: '2px 2px var(--global-color-shadow)'
         },
       },
       outline: {
         boxShadow: 'none',
-        border: "2px solid var(--shadow)",
+        border: "2px solid var(--global-color-shadow)",
         bg: {
           base: 'transparent',
         },
         "&:hover, &:focus-visible": { 
-          boxShadow: '2px 2px var(--shadow)'
+          boxShadow: '2px 2px var(--global-color-shadow)'
         },
         _active: {
           boxShadow: 'none'
